@@ -1,0 +1,39 @@
+{
+  "name": "risk-server",
+  "version": "0.0.1",
+  "description": "Risk board game server",
+  "main": "./lib/server.js",
+  "scripts": {
+    "client": "node --es_staging ./client/test.js",
+    "start": "node --es_staging ./lib/server.js --port 8080",
+    "test": "mocha ./test --es_staging --recursive --check-leaks --colors",
+    "test:watch": "npm test -- --watch",
+    "cover": "node --es_staging ./node_modules/istanbul/lib/cli.js --include-all-sources cover --root lib _mocha ./test -R --spec -- --recursive",
+    "ci": "npm run cover",
+    "lint": "eslint lib"
+  },
+  "author": "Arjan Frans <arjanfrans.com@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arjanfrans/risk-server"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "conquete": "^0.1.4",
+    "debug": "^2.2.0",
+    "minimist": "^1.2.0",
+    "node-uuid": "^1.4.7",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^2.7.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
+    "sinon": "^1.17.3",
+    "socket.io-client": "^1.4.5"
+  }
+}
