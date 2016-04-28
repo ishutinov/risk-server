@@ -4,8 +4,8 @@
   "description": "Risk board game server",
   "main": "./lib/server.js",
   "scripts": {
-    "client": "node --es_staging ./client/test.js",
-    "start": "node --es_staging ./lib/server.js --port 8080",
+    "client": "nodemon --es_staging --watch client ./client/test.js",
+    "start": "nodemon --es_staging --watch lib ./bin/cli.js --port 8080",
     "test": "mocha ./test --es_staging --recursive --check-leaks --colors",
     "test:watch": "npm test -- --watch",
     "cover": "node --es_staging ./node_modules/istanbul/lib/cli.js --include-all-sources cover --root lib _mocha ./test -R --spec -- --recursive",
@@ -23,7 +23,6 @@
     "conquete": "^0.1.4",
     "debug": "^2.2.0",
     "minimist": "^1.2.0",
-    "node-uuid": "^1.4.7",
     "socket.io": "^1.4.5"
   },
   "devDependencies": {
@@ -33,6 +32,7 @@
     "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0",
+    "nodemon": "^1.9.1",
     "sinon": "^1.17.3",
     "socket.io-client": "^1.4.5"
   }

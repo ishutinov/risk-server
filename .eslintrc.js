@@ -112,6 +112,8 @@ module.exports = {
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
         "no-continue": "error",
+        "no-console": "off",
+        // "no-console": "error",;
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "off",
@@ -182,7 +184,12 @@ module.exports = {
             }
         ],
         "no-unmodified-loop-condition": "error",
-        "no-unneeded-ternary": "error",
+        "no-unneeded-ternary": [
+            "error",
+            {
+                "defaultAssignment": true
+            }
+        ],
         "no-unused-expressions": "error",
         "no-use-before-define": "error",
         "no-useless-call": "error",

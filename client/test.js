@@ -20,8 +20,16 @@ socket.on('serverError', (err) => {
     debug('server returned error', err);
 });
 
+socket.on('roomCreated', data => {
+    console.log('room created', data);
+})
+
 socket.emit('register', {
     name: 'yo'
 });
 
+socket.emit('createRoom', {
+    name: 'testroom',
+    maxClients: 20
+});
 
