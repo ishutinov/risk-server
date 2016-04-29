@@ -403,4 +403,47 @@ describe('rooms', function () {
             return server.close();
         });
     });
+
+    context('client joins a full room', function () {
+        let server = null;
+        let clientA = null;
+        let clientB = null;
+
+        before(async(function *() {
+            server = Server.start(PORT);
+
+            clientA = SocketClient(URL);
+            clientB = SocketClient(URL);
+
+            yield registerClients(clientA, clientB);
+        }));
+
+        it('error is emitted', function (done) {
+            let count = 0;
+            const tryDone = () => {
+                count += 1;
+
+                if (count === 1) {
+                    done();
+                }
+            };
+
+            clientB.on('serverError', err => {
+                expect(err.name).to.equal('RoomFullError');
+                expect(err.data.id).to.equal('room1');
+
+                tryDone();
+            });
+
+            clientA.on('roomCreated', () => {
+                clientB.emit('joinRoom', { id: 'room1' });
+            });
+
+            clientA.emit('createRoom', { name: 'room1', maxClients: 1 });
+        });
+
+        after(function () {
+            return server.close();
+        });
+    });
 });
